@@ -10,7 +10,6 @@ public class Client_PDF {
 			try {
 				sensors = service.requestEnvironmentDataTypes();
 			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
 				System.out.println("ErrorCatch");
 				e.printStackTrace();
 			}

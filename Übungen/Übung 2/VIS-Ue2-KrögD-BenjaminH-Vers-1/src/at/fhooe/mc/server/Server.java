@@ -1,42 +1,44 @@
-package at.fhooe.mc.api;
-import java.net.Socket;
+package at.fhooe.mc.server;
+
 import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.IOException;
 import java.io.PrintWriter;
+import java.rmi.*;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
 
-public class MyJavaClient implements IEnvService {
+import java.io.IOException;
+
+public class Server extends UnicastRemoteObject implements IEnvService {
 	private PrintWriter mOutput;
-	private BufferedReader mIn;
-	private Socket socket;
+	private BufferedReader mInput;
 	
-	public MyJavaClient(){
-	    int mPortNumber = 5028;
-		String mHost = "192.168.188.30";
+	
+	protected Server() throws RemoteException {
+		super();
+	}
 
-	    try {
-            this.socket = new Socket(mHost, mPortNumber);
-            this.mOutput = new PrintWriter(socket.getOutputStream(), true);
-            this.mIn = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        } catch (IOException e) {
-            System.err.println("IP: " + mHost);
-            System.exit(1);
-        } 
-    }
+	public static void main(String[] args) {
+		try {
+			Server server = new Server();
+			Registry reg = LocateRegistry.createRegistry(3500);
+			reg.rebind("envService", server);
+		} catch (Exception _e) {
+			_e.printStackTrace();	
+		}
 
-
+	}
 
 	@Override
-	public EnvData requestEnvironmentData(String _type) {
-        char[] buffer=new char[100];
+	public EnvData requestEnvironmentData(String _type) throws RemoteException {
+		char[] buffer=new char[100];
 		EnvData data = null;
 		StringBuilder stringbuilder = new StringBuilder();
     	stringbuilder.append("sensor;" + _type + "#\0");
         mOutput.println(stringbuilder.toString());
         try {
-			mIn.read(buffer);
+			mInput.read(buffer);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         String msg = new String(buffer).split("#")[0];
@@ -61,7 +63,23 @@ public class MyJavaClient implements IEnvService {
 	}
 
 	@Override
-	public EnvData[] requestAll() {
+	public String[] requestEnvironmentDataTypes() throws RemoteException {
+		char[] buffer=new char[100];
+		StringBuilder stringbuilder = new StringBuilder();
+    	stringbuilder.append("sensortypes#\0");
+        mOutput.println(stringbuilder.toString());
+        try {
+        	mInput.read(buffer);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+        String msg = new String(buffer).split("#")[0];
+        System.out.println(msg);
+        return msg.split(";");
+	}
+
+	@Override
+	public EnvData[] requestAll() throws RemoteException {
 		String[] sensorPack = requestEnvironmentDataTypes();
 		int length = sensorPack.length;
 		EnvData[] data = new EnvData[length];
@@ -71,20 +89,5 @@ public class MyJavaClient implements IEnvService {
 		}
 		return data;
 	}
-	
-	@Override
-	public String[] requestEnvironmentDataTypes() {
-        char[] buffer=new char[100];
-		StringBuilder stringbuilder = new StringBuilder();
-    	stringbuilder.append("sensortypes#\0");
-        mOutput.println(stringbuilder.toString());
-        try {
-        	mIn.read(buffer);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-        String msg = new String(buffer).split("#")[0];
-        System.out.println(msg);
-        return msg.split(";");
-	}
+
 }
