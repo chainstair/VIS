@@ -1,5 +1,6 @@
 package at.fhooe.mc.servlet;
 
+
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -9,12 +10,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/environmentserviceservlet")
+@WebServlet(
+		name= "/environmentserviceservlet",
+		urlPatterns = {"/environmentservice"}
+)
+
 public class EnvironmentServiceServlet extends HttpServlet {
 	public void doGet(HttpServletRequest _request, HttpServletResponse _response) throws ServletException, IOException {
         _response.setContentType("text/html");
 		PrintWriter out = _response.getWriter();
 		
+		try {
+			
+		} catch (Exception _e) {
+			// TODO: handle exception
+		}
 		
 		out.println("<HTML>");
 		out.println("<HEAD><TITLE>Environment Data</TITLE></HEAD>");
@@ -29,19 +39,19 @@ public class EnvironmentServiceServlet extends HttpServlet {
 		out.println("<th>Value</th>");		
 		out.println("</tr>");
 		out.println("<tr>");
-		out.println("<th></th>");
-		out.println("<th></th>");
-		out.println("<th></th>");		
+		out.println("<td></td>");
+		out.println("<td></td>");
+		out.println("<td></td>");	
 		out.println("</tr>");
 		out.println("<tr>");
-		out.println("<th></th>");
-		out.println("<th></th>");
-		out.println("<th></th>");		
+		out.println("<td></td>");
+		out.println("<td></td>");
+		out.println("<td></td>");	
 		out.println("</tr>");
 		out.println("<tr>");
-		out.println("<th></th>");
-		out.println("<th></th>");
-		out.println("<th></th>");		
+		out.println("<td></td>");
+		out.println("<td></td>");
+		out.println("<td></td>");	
 		out.println("</tr>");	
 		out.println("</table><br>");	
 		
@@ -53,9 +63,9 @@ public class EnvironmentServiceServlet extends HttpServlet {
 		out.println("<th>Value</th>");		
 		out.println("</tr>");
 		out.println("<tr>");
-		out.println("<th></th>");
-		out.println("<th></th>");
-		out.println("<th></th>");		
+		out.println("<td></td>");
+		out.println("<td></td>");
+		out.println("<td></td>");		
 		out.println("</tr>");
 		out.println("</table><br>");	
 
