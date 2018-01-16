@@ -14,4 +14,11 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>classes</name>
+			<type>2</type>
+			<location>C:/Users/gezgi/Desktop/HelloWorld/WEB-INF/classes</location>
+		</link>
+	</linkedResources>
 </projectDescription>
