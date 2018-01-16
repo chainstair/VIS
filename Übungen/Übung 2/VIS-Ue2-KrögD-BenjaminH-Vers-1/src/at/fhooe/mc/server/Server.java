@@ -22,6 +22,7 @@ public class Server extends UnicastRemoteObject implements IEnvService {
 
 		if (_type.equals("air")) {
 			data = new AirData();
+			System.out.println(data.toString());
 		} else {
 			System.out.println("Error");
 		}
@@ -31,17 +32,7 @@ public class Server extends UnicastRemoteObject implements IEnvService {
 
 	@Override
 	public String[] requestEnvironmentDataTypes() throws RemoteException {
-		char[] buffer = new char[100];
-		StringBuilder stringbuilder = new StringBuilder();
-		stringbuilder.append("sensortypes#\0");
-		mOutput.println(stringbuilder.toString());
-		try {
-			mInput.read(buffer);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		String msg = new String(buffer).split("#")[0];
-		System.out.println(msg);
+
 		return msg.split(";");
 	}
 
