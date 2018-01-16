@@ -10,7 +10,9 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletResponse; 
+
+import at.fhooe.mc.server.*;
 
 @WebServlet(
 		name= "/environmentserviceservlet",
@@ -19,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class EnvironmentServiceServlet extends HttpServlet {
 	public void doGet(HttpServletRequest _request, HttpServletResponse _response) throws ServletException, IOException {
+		_response.addIntHeader("Refresh", 5);
         _response.setContentType("text/html");
 		PrintWriter out = _response.getWriter();
 		
@@ -31,7 +34,7 @@ public class EnvironmentServiceServlet extends HttpServlet {
 
 		
 		try {
-			Client client = new Client("ipaddress", 1099);
+			Client client = new Client("127.0.0.1", 5063);
 			
 			EnvData[] cData = client.requestAll();
 			
@@ -61,8 +64,8 @@ public class EnvironmentServiceServlet extends HttpServlet {
 		try{
 			String adr = "EnvService";
 			Registry reg = LocateRegistry.getRegistry();
-			IEnvService server = (IEnvService)reg.lookup(adr);
-			EnvData[] data = server.requestAll();
+			at.fhooe.mc.server.IEnvService server = (at.fhooe.mc.server.IEnvService)reg.lookup(adr);
+			at.fhooe.mc.server.EnvData[] data = server.requestAll();
 			
 			out.println("<H2>RMI Server Environment Data<br></H2>");
 			out.println("<table border=\"1\">");
@@ -71,11 +74,9 @@ public class EnvironmentServiceServlet extends HttpServlet {
 			out.println("<th>Sensor</th>");
 			out.println("<th>Value</th>");		
 			out.println("</tr>");
-			for (EnvData e : data){
+			for (at.fhooe.mc.server.EnvData e : data){
 				out.println("<tr>");
-				out.println("<td>" + e.getmTimestamp() + "</td>");
-				out.println("<td>" + e.getType() + "</td>");
-				out.println("<td>" + e.getData() + "</td>");
+				out.println("<td>" + e.toString()+ "</td>");
 				out.println("</tr>");
 			}
 			out.println("</table><br>");			

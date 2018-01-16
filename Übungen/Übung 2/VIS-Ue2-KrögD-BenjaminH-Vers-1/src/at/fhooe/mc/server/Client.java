@@ -14,7 +14,7 @@ public class Client {
 		try {
 			String adr = "EnvService";
 
-			Registry reg = LocateRegistry.getRegistry();
+			Registry reg = LocateRegistry.getRegistry(6001);
 			IEnvService server = (IEnvService)reg.lookup(adr);
 
 			while (true) {

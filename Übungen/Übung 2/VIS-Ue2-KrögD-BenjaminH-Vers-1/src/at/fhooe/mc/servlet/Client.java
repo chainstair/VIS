@@ -2,6 +2,7 @@ package at.fhooe.mc.servlet;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.rmi.*;
@@ -26,6 +27,8 @@ public class Client implements IEnvService {
 	public void initializeSocket(String _ipAddress, int _port) {
 		try {
 			mSocket = new Socket(_ipAddress, _port);
+			mOutput = new PrintWriter(mSocket.getOutputStream(), true);
+			mInput = new BufferedReader(new InputStreamReader(mSocket.getInputStream()));
 		} catch (IOException _e) {
 			_e.printStackTrace();
 		}
