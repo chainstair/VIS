@@ -4,6 +4,10 @@ import java.rmi.*;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
+/**
+ * @author David
+ *
+ */
 public class Client {
 
 	public static void main(String[] _args) {
@@ -47,7 +51,7 @@ public class Client {
 					System.out.println(dataO);
 				} // for data
 				try {
-					Thread.sleep(1000);
+					Thread.sleep(5000);
 				} catch (Exception _e) {
 					_e.printStackTrace();
 				}

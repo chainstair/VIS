@@ -3,6 +3,11 @@ package at.fhooe.mc.server;
 import java.io.Serializable;
 import java.util.Random;
 
+/**
+ * 
+ * @author David
+ *
+ */
 public class AirData implements EnvData, Serializable {
 
 	private int mPressure;
@@ -15,7 +20,12 @@ public class AirData implements EnvData, Serializable {
 		mTime = System.currentTimeMillis();
 	}
 		
+	/**
+	 * Formating the data of the class as String.
+	 * 
+	 * @return the data of the class as String object.
+	 */
 	public String toString(){
-		return("AirData" + ": " + mTime + "|" + "  Air: " + mPressure);
+		return("AirData" + ": " + mTime + "|" + "  Pressure: " + mPressure);
 	}
 }
