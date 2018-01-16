@@ -25,6 +25,11 @@ public class Client implements IEnvService {
 	
 	public void initializeSocket(String _ipAddress, int _port) {
 		try {
+<<<<<<< HEAD
+			String adr = "EnvService";
+			Registry reg = LocateRegistry.getRegistry();
+			IEnvService server = (IEnvService)reg.lookup(adr);
+=======
 			mSocket = new Socket(_ipAddress, _port);
 		} catch (IOException _e) {
 			_e.printStackTrace();
@@ -46,6 +51,7 @@ public class Client implements IEnvService {
         System.out.println(msg);
         return msg.split(";");
 	}
+>>>>>>> ab5f59a410d3944b7ab7fd9c1e3f30c69e92e5a6
 
 	@Override
 	public EnvData requestEnvironmentData(String _type) throws RemoteException {
