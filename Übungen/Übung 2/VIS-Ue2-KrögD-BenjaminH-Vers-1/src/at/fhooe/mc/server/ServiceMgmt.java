@@ -7,7 +7,6 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.util.Random;
 
 import at.fhooe.mc.server.Server;
 
@@ -42,7 +41,7 @@ public class ServiceMgmt {
 					lineInput = null;
 					server = new Server();
 					reg = LocateRegistry.createRegistry(Registry.REGISTRY_PORT);
-					reg.rebind("envService", server);
+					reg.rebind("EnvService", server);
 					System.out.println("RMI - Server started!");
 				} catch (RemoteException e) {
 					System.out.println("Error starting RMI - Server");
@@ -54,7 +53,7 @@ public class ServiceMgmt {
 				if (server != null && reg != null) {
 					try {
 						lineInput = null;
-						reg.unbind("envService");
+						reg.unbind("EnvService");
 						System.out.println("RMI - Server stopped!");
 					} catch (RemoteException e) {
 						System.out.println("Error stopping RMI - Server");
