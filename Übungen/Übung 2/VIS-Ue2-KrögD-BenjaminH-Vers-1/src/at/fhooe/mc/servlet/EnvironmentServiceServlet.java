@@ -20,40 +20,41 @@ public class EnvironmentServiceServlet extends HttpServlet {
         _response.setContentType("text/html");
 		PrintWriter out = _response.getWriter();
 		
-		try {
-			
-		} catch (Exception _e) {
-			// TODO: handle exception
-		}
-		
 		out.println("<HTML>");
 		out.println("<HEAD><TITLE>Environment Data</TITLE></HEAD>");
 		out.println("<BODY>");
 		out.println("<H1>Environment Data</H1>");
 		
 		out.println("<H2>C++ Server Environment Data<br></H2>");
-		out.println("<table border=\"1\">");
-		out.println("<tr>");
-		out.println("<th>Timestamp</th>");
-		out.println("<th>Sensor</th>");
-		out.println("<th>Value</th>");		
-		out.println("</tr>");
-		out.println("<tr>");
-		out.println("<td></td>");
-		out.println("<td></td>");
-		out.println("<td></td>");	
-		out.println("</tr>");
-		out.println("<tr>");
-		out.println("<td></td>");
-		out.println("<td></td>");
-		out.println("<td></td>");	
-		out.println("</tr>");
-		out.println("<tr>");
-		out.println("<td></td>");
-		out.println("<td></td>");
-		out.println("<td></td>");	
-		out.println("</tr>");	
-		out.println("</table><br>");	
+
+		
+		try {
+			Client client = new Client("ipaddress", 1099);
+			
+			EnvData[] cData = client.requestAll();
+			
+			out.println("<table border=\"1\">");
+			out.println("<tr>");
+			out.println("<th>Timestamp</th>");
+			out.println("<th>Sensor</th>");
+			out.println("<th>Value</th>");		
+			out.println("</tr>");
+			
+			for (EnvData data : cData) {
+				out.println("<tr>");
+				out.println("<td>" + data.getmTimestamp() + "</td>");
+				out.println("<td>" + data.getType() + "</td>");
+				out.println("<td>" + data.getData() + "</td>");	
+				out.println("</tr>");
+			}	
+			
+			out.println("</table><br>");
+		} catch (Exception _e) {
+			out.println("<h3>Cant connect to C++ Server.");
+			out.println(_e.getMessage());
+		}
+			
+			
 		
 		out.println("<H2>RMI Server Environment Data<br></H2>");
 		out.println("<table border=\"1\">");
