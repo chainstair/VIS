@@ -17,6 +17,9 @@ public class Client {
 				String[] sensors = null;
 				try {
 					sensors = server.requestEnvironmentDataTypes();
+					for (String s : sensors){
+						System.out.println(s.toString());
+					}
 				} catch (RemoteException e) {
 					System.out.println("ErrorCatch");
 					e.printStackTrace();
@@ -29,8 +32,7 @@ public class Client {
 						e.printStackTrace();
 					}
 					System.out.print(dataO);
-					System.out.println();
-					System.out.println("*****************************");
+					System.out.println("\n\n*****************************");
 				}
 				// for sensor
 				System.out.println();
