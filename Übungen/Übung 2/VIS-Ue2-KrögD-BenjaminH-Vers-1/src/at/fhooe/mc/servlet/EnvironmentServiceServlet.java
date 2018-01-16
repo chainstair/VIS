@@ -63,6 +63,7 @@ public class EnvironmentServiceServlet extends HttpServlet {
 		
 		try{
 			String adr = "EnvService";
+			
 			Registry reg = LocateRegistry.getRegistry();
 			at.fhooe.mc.server.IEnvService server = (at.fhooe.mc.server.IEnvService)reg.lookup(adr);
 			at.fhooe.mc.server.EnvData[] data = server.requestAll();
