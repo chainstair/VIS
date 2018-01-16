@@ -7,11 +7,17 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
 
 import at.fhooe.mc.server.Server;
 
+/**
+ * 
+ * @author David
+ *
+ */
 public class ServiceMgmt {
-		
+
 	public static void main(String[] args) {
 		String startDialog = "Choose option\n'start' --> Start RMI-Service\n'stop' --> Stop RMI-Service\n'quit' --> Quit Programm\n";
 		System.out.println(startDialog);
@@ -19,15 +25,18 @@ public class ServiceMgmt {
 		String lineInput = null;
 		Server server = null;
 		Registry reg = null;
+		boolean firstStart = true;
+
 		try {
 			lineInput = in.readLine();
 		} catch (IOException e) {
 			System.out.println("Read Line Error");
 			e.printStackTrace();
 		}
+
 		boolean writeEnabled = true;
 		while (writeEnabled) {
-			if (lineInput == null){
+			if (lineInput == null) {
 				try {
 					lineInput = in.readLine();
 				} catch (IOException e) {
@@ -40,7 +49,12 @@ public class ServiceMgmt {
 				try {
 					lineInput = null;
 					server = new Server();
-					reg = LocateRegistry.createRegistry(Registry.REGISTRY_PORT);
+					if (firstStart) {
+						reg = LocateRegistry.createRegistry(Registry.REGISTRY_PORT);
+						firstStart = false;
+					} else {
+						reg = LocateRegistry.getRegistry();
+					}
 					reg.rebind("EnvService", server);
 					System.out.println("RMI - Server started!");
 				} catch (RemoteException e) {
@@ -54,6 +68,11 @@ public class ServiceMgmt {
 					try {
 						lineInput = null;
 						reg.unbind("EnvService");
+						if (!(UnicastRemoteObject.unexportObject(server, true))) {
+							System.out.println("Error: unexporting!");
+						}
+						reg = null;
+
 						System.out.println("RMI - Server stopped!");
 					} catch (RemoteException e) {
 						System.out.println("Error stopping RMI - Server");
@@ -83,5 +102,4 @@ public class ServiceMgmt {
 		}
 	}
 
-	
 }

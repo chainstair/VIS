@@ -2,6 +2,11 @@ package at.fhooe.mc.server;
 
 import java.rmi.*;
 
+/**
+ * 
+ * @author David
+ *
+ */
 public interface IEnvService extends Remote{
 	
 	/**

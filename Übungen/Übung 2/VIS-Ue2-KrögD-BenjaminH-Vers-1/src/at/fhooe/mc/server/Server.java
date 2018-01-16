@@ -3,6 +3,14 @@ package at.fhooe.mc.server;
 import java.rmi.*;
 import java.rmi.server.UnicastRemoteObject;
 
+
+/**
+ *
+ * @author David
+ * 
+ * Implements the server 
+ *
+ */
 public class Server extends UnicastRemoteObject implements IEnvService {
 	private String[] mSensorTypes = {"air"};
 	
@@ -10,7 +18,18 @@ public class Server extends UnicastRemoteObject implements IEnvService {
 		super();
 	}
 
-
+	/**
+	* Liefert die Messwerte für einen speziellen Sensor in Form eines
+	* Environment Data (EnvData) Objektes zurück
+	*
+	* @param _type der betreffende Umweltsensor
+	* @return EnvData Die aktuellen Messwerte des entsprechenden Sensors
+	* null, falls der Sensor nicht existiert
+	* @throws RemoteException Ein Fehler trat bei der Kommunikation auf
+	* @see at.fhooe.mc.vis.EnvData
+	* @see java.lang.String
+	* @see java.rmi.RemoteException
+	*/
 	@Override
 	public EnvData requestEnvironmentData(String _type) throws RemoteException {
 		EnvData data = null;
@@ -24,7 +43,15 @@ public class Server extends UnicastRemoteObject implements IEnvService {
 		
 		return data;
 	}
-
+	
+	/**
+	* Liefert die Typen der zur Verfügung stehenden Umweltsensoren
+	*
+	* @return Ein String-Array mit den Typen der Umweltsensoren
+	* @throws RemoteException Ein Fehler trat bei der Kommunikation auf
+	* @see java.lang.String
+	* @see java.rmi.RemoteException
+	*/
 	@Override
 	public String[] requestEnvironmentDataTypes() throws RemoteException {
 		System.out.println("Sensortypes: ");
@@ -34,6 +61,15 @@ public class Server extends UnicastRemoteObject implements IEnvService {
 		return mSensorTypes;
 	}
 
+	/**
+	* Liefert die Messwerte aller verfügbarer Sensoren zurück
+	*
+	* @return EnvData[] alle verfügbaren Messwerte
+	* @throws RemoteException Ein Fehler trat bei der Kommunikation auf
+	* @see at.fhooe.mc.vis.EnvData
+	* @see java.lang.String
+	* @see java.rmi.RemoteException
+	*/
 	@Override
 	public EnvData[] requestAll() throws RemoteException {
 		String[] sensorPack = requestEnvironmentDataTypes();
