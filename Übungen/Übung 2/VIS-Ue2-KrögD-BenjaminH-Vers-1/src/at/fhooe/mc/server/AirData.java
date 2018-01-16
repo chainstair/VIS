@@ -1,18 +1,19 @@
 package at.fhooe.mc.server;
 
+import java.util.Random;
+
 public class AirData implements EnvData {
 
-	private int mAir;
-	private int mPollution;
+	private int mPressure;
 	private int mTime;
+	private Random mRandom;
 	
-	public AirData(int _time, int _air, int _pollution){
-		mAir = _air;
-		mPollution = _pollution;
-		mTime = _time;
+	public AirData(){
+		mPressure = mRandom.nextInt() % 120;
+		mTime = (int) System.currentTimeMillis();
 	}
 		
 	public String toString(){
-		return("AirData" + ": " + mTime + "|" + "  Air: " + mAir + "  Pollution: " + mPollution);
+		return("AirData" + ": " + mTime + "|" + "  Air: " + mPressure);
 	}
 }

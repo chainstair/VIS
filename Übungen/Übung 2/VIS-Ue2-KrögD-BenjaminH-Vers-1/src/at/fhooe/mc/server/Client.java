@@ -8,8 +8,8 @@ public class Client {
 
 	public static void main(String[] _args) {
 		try {
-			String adr = "envService";
-			Registry reg = LocateRegistry.getRegistry(3500);
+			String adr = "EnvService";
+			Registry reg = LocateRegistry.getRegistry();
 			IEnvService server = (IEnvService)reg.lookup(adr);
 
 			while (true) {
