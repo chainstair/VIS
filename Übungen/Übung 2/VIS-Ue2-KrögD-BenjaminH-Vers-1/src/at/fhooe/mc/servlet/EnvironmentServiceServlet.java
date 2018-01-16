@@ -3,6 +3,8 @@ package at.fhooe.mc.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -55,19 +57,32 @@ public class EnvironmentServiceServlet extends HttpServlet {
 		out.println("</tr>");	
 		out.println("</table><br>");	
 		
-		out.println("<H2>RMI Server Environment Data<br></H2>");
-		out.println("<table border=\"1\">");
-		out.println("<tr>");
-		out.println("<th>Timestamp</th>");
-		out.println("<th>Sensor</th>");
-		out.println("<th>Value</th>");		
-		out.println("</tr>");
-		out.println("<tr>");
-		out.println("<td></td>");
-		out.println("<td></td>");
-		out.println("<td></td>");		
-		out.println("</tr>");
-		out.println("</table><br>");	
+		try{
+			String adr = "EnvService";
+			Registry reg = LocateRegistry.getRegistry();
+			IEnvService server = (IEnvService)reg.lookup(adr);
+			EnvData[] data = server.requestAll();
+			
+			out.println("<H2>RMI Server Environment Data<br></H2>");
+			out.println("<table border=\"1\">");
+			out.println("<tr>");
+			out.println("<th>Timestamp</th>");
+			out.println("<th>Sensor</th>");
+			out.println("<th>Value</th>");		
+			out.println("</tr>");
+			for (EnvData e : data){
+				out.println("<tr>");
+				out.println("<td>" + e.getmTimestamp() + "</td>");
+				out.println("<td>" + e.getType() + "</td>");
+				out.println("<td>" + e.getData() + "</td>");
+				out.println("</tr>");
+			}
+			out.println("</table><br>");			
+		}
+		catch (Exception e) {
+			out.println("<p>RMI offline</p>");
+			out.println(e.getStackTrace());
+		}
 
 		out.println("</BODY>");
 		out.println("</HTML>");
