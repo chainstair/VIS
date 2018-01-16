@@ -1,9 +1,6 @@
 package at.fhooe.mc.servlet;
 
 public class EnvData {
-<<<<<<< HEAD
-
-=======
     private long mTimestamp;
     private int[] mAir;
     private int mNoise;
@@ -138,5 +135,4 @@ public class EnvData {
 		}
     	return stringBuilder.toString();
     }	
->>>>>>> 0cea64ffb33945e71bea7f407e1120be5315416e
 }
