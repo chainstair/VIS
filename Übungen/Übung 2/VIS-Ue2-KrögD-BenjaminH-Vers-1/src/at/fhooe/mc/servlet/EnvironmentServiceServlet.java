@@ -28,6 +28,7 @@ public class EnvironmentServiceServlet extends HttpServlet {
 		out.println("<HTML>");
 		out.println("<HEAD><TITLE>Environment Data</TITLE></HEAD>");
 		out.println("<BODY>");
+		out.println("<INPUT TYPE=\"button\" onClick=\"history.go(0)\" VALUE=\"Refresh\">");
 		out.println("<H1>Environment Data</H1>");
 		
 		out.println("<H2>C++ Server Environment Data<br></H2>");
