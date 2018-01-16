@@ -25,11 +25,6 @@ public class Client implements IEnvService {
 	
 	public void initializeSocket(String _ipAddress, int _port) {
 		try {
-<<<<<<< HEAD
-			String adr = "EnvService";
-			Registry reg = LocateRegistry.getRegistry();
-			IEnvService server = (IEnvService)reg.lookup(adr);
-=======
 			mSocket = new Socket(_ipAddress, _port);
 		} catch (IOException _e) {
 			_e.printStackTrace();
@@ -51,12 +46,12 @@ public class Client implements IEnvService {
         System.out.println(msg);
         return msg.split(";");
 	}
->>>>>>> ab5f59a410d3944b7ab7fd9c1e3f30c69e92e5a6
+
 
 	@Override
 	public EnvData requestEnvironmentData(String _type) throws RemoteException {
 		char[] buffer=new char[100];
-		EnvData data = null;
+		EnvData data = new EnvData();
 		StringBuilder stringbuilder = new StringBuilder();
     	stringbuilder.append("sensor;" + _type + "#\0");
         mOutput.println(stringbuilder.toString());
@@ -70,16 +65,20 @@ public class Client implements IEnvService {
         System.out.println(msg);
         if (_type.equals("noise")){
         	String[] splitMsg = msg.split("\\|");
-        	data.setmNoise(Integer.parseInt(splitMsg[0]),Integer.parseInt(splitMsg[1]));
+        	data.setmTimestamp(Integer.parseInt(splitMsg[0]));
+        	data.setmNoise(Integer.parseInt(splitMsg[1]));
         }
         else if (_type.equals("air")){
         	String[] splitMsg = msg.split("\\|");
         	String[] messageVal = splitMsg[1].split(";");
-        	data.setmAir(Integer.parseInt(splitMsg[0]),Integer.parseInt(messageVal[0]),Integer.parseInt(messageVal[1]));
+        	data.setmTimestamp(Integer.parseInt(splitMsg[0]));
+        	int[] airArray = {Integer.parseInt(messageVal[0]),Integer.parseInt(messageVal[1])};
+        	data.setmAir(airArray);
         }
         else if (_type.equals("light")){
         	String[] splitMsg = msg.split("\\|");
-        	data.setmLight(Integer.parseInt(splitMsg[0]),Integer.parseInt(splitMsg[1]));
+        	data.setmTimestamp(Integer.parseInt(splitMsg[0]));
+        	data.setmLight(Integer.parseInt(splitMsg[1]));
         }
         else {
         	System.out.println("Error");
