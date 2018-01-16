@@ -1,16 +1,11 @@
 package at.fhooe.mc.server;
 
-import java.io.BufferedReader;
-import java.io.PrintWriter;
 import java.rmi.*;
 import java.rmi.server.UnicastRemoteObject;
 
-import java.io.IOException;
-
 public class Server extends UnicastRemoteObject implements IEnvService {
-	private PrintWriter mOutput;
-	private BufferedReader mInput;
-
+	private String[] mSensorTypes = {"air"};
+	
 	protected Server() throws RemoteException {
 		super();
 	}
@@ -19,21 +14,29 @@ public class Server extends UnicastRemoteObject implements IEnvService {
 	@Override
 	public EnvData requestEnvironmentData(String _type) throws RemoteException {
 		EnvData data = null;
-
+		
 		if (_type.equals("air")) {
 			data = new AirData();
 			System.out.println(data.toString());
 		} else {
 			System.out.println("Error");
 		}
-
+		
 		return data;
 	}
 
 	@Override
 	public String[] requestEnvironmentDataTypes() throws RemoteException {
+<<<<<<< HEAD
 
 		return msg.split(";");
+=======
+		System.out.println("Sensortypes: ");
+		for (String type : mSensorTypes){
+			System.out.println(type + " ");
+		}
+		return mSensorTypes;
+>>>>>>> 9cb7a6a6326c38d66b7093bda2e253c25acf54b4
 	}
 
 	@Override
