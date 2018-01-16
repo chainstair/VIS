@@ -31,7 +31,7 @@ public class EnvironmentServiceServlet extends HttpServlet {
 
 		
 		try {
-			Client client = new Client("ipaddress", 1099);
+			Client client = new Client("192.168.188.30", 5040);
 			
 			EnvData[] cData = client.requestAll();
 			
@@ -60,7 +60,7 @@ public class EnvironmentServiceServlet extends HttpServlet {
 		
 		try{
 			String adr = "EnvService";
-			Registry reg = LocateRegistry.getRegistry();
+			Registry reg = LocateRegistry.getRegistry("192.168.188.30");
 			IEnvService server = (IEnvService)reg.lookup(adr);
 			EnvData[] data = server.requestAll();
 			
