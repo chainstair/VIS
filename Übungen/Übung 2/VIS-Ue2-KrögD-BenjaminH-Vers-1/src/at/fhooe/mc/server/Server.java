@@ -17,7 +17,7 @@ public class Server extends UnicastRemoteObject implements IEnvService {
 		
 		if (_type.equals("air")) {
 			data = new AirData();
-			System.out.println(data.toString());
+			System.out.println("" + data.toString());
 		} else {
 			System.out.println("Error");
 		}
