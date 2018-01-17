@@ -12,7 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse; 
 
-import at.fhooe.mc.server.*;
+import at.fhooe.mc.api.*;
+import at.fhooe.mc.interfaces.*;
 
 @WebServlet(
 		name= "/environmentserviceservlet",
@@ -20,6 +21,11 @@ import at.fhooe.mc.server.*;
 )
 
 public class EnvironmentServiceServlet extends HttpServlet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public void doGet(HttpServletRequest _request, HttpServletResponse _response) throws ServletException, IOException {
 		_response.addIntHeader("Refresh", 5);
         _response.setContentType("text/html");
@@ -35,9 +41,11 @@ public class EnvironmentServiceServlet extends HttpServlet {
 
 		
 		try {
-			Client client = new Client("127.0.0.1", 5063);
 			
-			EnvData[] cData = client.requestAll();
+			MyJavaClient client = new MyJavaClient("127.0.0.1", 5063);
+			//Client client = new Client("127.0.0.1", 5063);
+			
+			EnvData[] data = client.requestAll();
 			
 			out.println("<table border=\"1\">");
 			out.println("<tr>");
@@ -46,11 +54,11 @@ public class EnvironmentServiceServlet extends HttpServlet {
 			out.println("<th>Value</th>");		
 			out.println("</tr>");
 			
-			for (EnvData data : cData) {
+			for (EnvData e : data) {
 				out.println("<tr>");
-				out.println("<td>" + data.getmTimestamp() + "</td>");
-				out.println("<td>" + data.getType() + "</td>");
-				out.println("<td>" + data.getData() + "</td>");	
+				out.println("<td>" + e.getTimestamp() + "</td>");
+				out.println("<td>" + e.getType() + "</td>");
+				out.println("<td>" + e.getValue() + "</td>");	
 				out.println("</tr>");
 			}	
 			
@@ -66,8 +74,8 @@ public class EnvironmentServiceServlet extends HttpServlet {
 			String adr = "EnvService";
 			
 			Registry reg = LocateRegistry.getRegistry();
-			at.fhooe.mc.server.IEnvService server = (at.fhooe.mc.server.IEnvService)reg.lookup(adr);
-			at.fhooe.mc.server.EnvData[] data = server.requestAll();
+			IEnvService server = (IEnvService)reg.lookup(adr);
+			EnvData[] data = server.requestAll();
 			
 			out.println("<H2>RMI Server Environment Data<br></H2>");
 			out.println("<table border=\"1\">");
@@ -76,9 +84,11 @@ public class EnvironmentServiceServlet extends HttpServlet {
 			out.println("<th>Sensor</th>");
 			out.println("<th>Value</th>");		
 			out.println("</tr>");
-			for (at.fhooe.mc.server.EnvData e : data){
+			for (EnvData e : data){
 				out.println("<tr>");
-				out.println("<td>" + e.toString()+ "</td>");
+				out.println("<td>" + e.getTimestamp() + "</td>");
+				out.println("<td>" + e.getType() + "</td>");
+				out.println("<td>" + e.getValue() + "</td>");
 				out.println("</tr>");
 			}
 			out.println("</table><br>");			

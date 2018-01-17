@@ -4,6 +4,8 @@ import java.rmi.*;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
+import at.fhooe.mc.interfaces.*;
+
 /**
  * @author David
  *
@@ -14,7 +16,7 @@ public class Client {
 		try {
 			String adr = "EnvService";
 
-			Registry reg = LocateRegistry.getRegistry(6001);
+			Registry reg = LocateRegistry.getRegistry();
 			IEnvService server = (IEnvService)reg.lookup(adr);
 
 			while (true) {

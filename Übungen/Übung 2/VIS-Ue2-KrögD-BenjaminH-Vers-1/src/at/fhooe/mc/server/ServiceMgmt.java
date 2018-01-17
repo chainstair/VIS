@@ -9,8 +9,6 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
-import javax.imageio.spi.RegisterableService;
-
 import at.fhooe.mc.server.Server;
 
 /**
@@ -52,7 +50,7 @@ public class ServiceMgmt {
 					lineInput = null;
 					server = new Server();
 					if (firstStart) {
-						reg = LocateRegistry.createRegistry(2000);
+						reg = LocateRegistry.createRegistry(Registry.REGISTRY_PORT);
 						firstStart = false;
 					} else {
 						reg = LocateRegistry.getRegistry();

@@ -3,6 +3,8 @@ package at.fhooe.mc.server;
 import java.rmi.*;
 import java.rmi.server.UnicastRemoteObject;
 
+import at.fhooe.mc.interfaces.*;
+
 
 /**
  *
@@ -35,7 +37,7 @@ public class Server extends UnicastRemoteObject implements IEnvService {
 		EnvData data = null;
 		
 		if (_type.equals("air")) {
-			data = new AirData();
+			data = new PressureData();
 			System.out.println("" + data.toString());
 		} else {
 			System.out.println("Error");

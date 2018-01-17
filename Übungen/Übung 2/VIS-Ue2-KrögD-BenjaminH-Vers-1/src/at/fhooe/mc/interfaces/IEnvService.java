@@ -1,4 +1,4 @@
-package at.fhooe.mc.server;
+package at.fhooe.mc.interfaces;
 
 import java.rmi.*;
 
