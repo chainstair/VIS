@@ -15,11 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import at.fhooe.mc.api.*;
 import at.fhooe.mc.interfaces.*;
 
-@WebServlet(
-		name= "/environmentserviceservlet",
-		urlPatterns = {"/environmentservice"}
-)
-
+@WebServlet("/environmentservice")
 public class EnvironmentServiceServlet extends HttpServlet {
 	/**
 	 * 
@@ -42,7 +38,7 @@ public class EnvironmentServiceServlet extends HttpServlet {
 		
 		try {
 			
-			MyJavaClient client = new MyJavaClient("127.0.0.1", 5063);
+			MyJavaClient client = new MyJavaClient("192.168.188.30", 5006);
 			//Client client = new Client("127.0.0.1", 5063);
 			
 			EnvData[] data = client.requestAll();
