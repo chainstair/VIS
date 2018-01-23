@@ -9,6 +9,4 @@ public class MainWS {
 		Endpoint endpoint = Endpoint.publish("http://localhost:8081/HelloWorld", helloWorld);
 		System.out.println("server up running ... ");
 	}
-
-	
 }

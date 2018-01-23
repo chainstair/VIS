@@ -1,10 +1,9 @@
 package at.fhooe.mc.jaxws;
 
 import javax.jws.*;
-import javax.xml.ws.Endpoint;
 
 @WebService(endpointInterface="at.fhooe.mc.jaxws.ISimpleInterface")
-public class HelloWorld {
+public class HelloWorld implements ISimpleInterface {
 	
 	@WebMethod
 	public String saySomething() {
@@ -15,5 +14,4 @@ public class HelloWorld {
 	public DummyData getData(String _name) {
 		return new DummyData("Dies ist ein Test", System.currentTimeMillis());
 	}
-
 }
