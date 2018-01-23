@@ -4,7 +4,7 @@ import java.util.Date;
 
 import javax.xml.bind.annotation.*;
 
-@XmlRootElement
+//@XmlRootElement
 @XmlType(propOrder={"mName", "mTyp", "mID", "mBirthday", "mVaccinations"})
 public class Pet {
 	
@@ -12,7 +12,7 @@ public class Pet {
 		super();
 	}
 
-	@XmlAttribute
+	@XmlAttribute(name="nickname")
 	String mNickName;
 	@XmlElement(name="name")
 	String mName;

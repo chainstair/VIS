@@ -5,9 +5,11 @@ import java.io.StringWriter;
 import java.util.Date;
 
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.transform.stream.StreamSource;
 
 import org.eclipse.persistence.jaxb.MarshallerProperties;
 import org.eclipse.persistence.jaxb.UnmarshallerProperties;
@@ -32,7 +34,14 @@ public class MainJson {
 
 			Unmarshaller unmarshaller = jaxb.createUnmarshaller();
 			unmarshaller.setProperty(UnmarshallerProperties.MEDIA_TYPE, MediaType.APPLICATION_JSON);
-			Pet resPet = (Pet) unmarshaller.unmarshal(new StringReader(data));
+			
+			//without root
+			unmarshaller.setProperty(UnmarshallerProperties.JSON_INCLUDE_ROOT, Boolean.FALSE);
+			StreamSource stream = new StreamSource(new StringReader(data));
+			JAXBElement<Pet> petContainer = unmarshaller.unmarshal(stream, Pet.class);
+			Pet resPet = petContainer.getValue();
+			
+			//Pet resPet = (Pet) unmarshaller.unmarshal(new StringReader(data));
 			System.out.println(resPet);
 		} catch (JAXBException e) {
 			System.out.println("JAXB Error");
