@@ -1,13 +1,10 @@
 package at.fhooe.mc.jaxws;
 
 import javax.jws.*;
+import javax.xml.ws.Endpoint;
 
-@WebService	//(endpointInterface="at.fhooe.mc.vis.IEnvService")
+@WebService(endpointInterface="at.fhooe.mc.jaxws.ISimpleInterface")
 public class HelloWorld {
-
-	public static void main(String[] args) {
-		
-	}
 	
 	@WebMethod
 	public String saySomething() {
