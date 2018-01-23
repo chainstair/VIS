@@ -11,7 +11,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
-public class Main {
+public class MainXml {
 
 	public static void main(String[] args) {//1940, 02, 10		
 		Pet pet = new Pet("Thomas", "Tom", new Date(40, 01, 10), Type.CAT, new String[]{"Katzenschnupfen", "Katzenseuche", "Tollwut", "Leukose"}, "123456789");
