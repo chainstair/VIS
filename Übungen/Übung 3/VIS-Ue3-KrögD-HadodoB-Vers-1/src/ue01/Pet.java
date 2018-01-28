@@ -1,4 +1,4 @@
-package at.fhooe.mc.jaxb;
+package ue01;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 

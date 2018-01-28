@@ -1,4 +1,4 @@
-package at.fhooe.mc.jaxb;
+package ue01;
 
 import javax.xml.bind.annotation.XmlType;
 

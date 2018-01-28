@@ -6,10 +6,10 @@ import java.net.URL;
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 
-import at.fhooe.mc.jaxws.*;
+
 
 public class Client {
-	
+	/*
 	ISimpleInterface mSOAP;
 	
 	public Client() throws MalformedURLException {
@@ -17,10 +17,12 @@ public class Client {
 				new URL("http://localhost:8081/HelloWorld?wsdl"), 
 				new QName("http://jaxws.mc.fhooe.at/", "HelloWorldService"));
 		mSOAP = service.getPort(ISimpleInterface.class);
+	}*/
+	public static void main(String[] _argv){
+		HelloWorldService srv = new HelloWorldService();
+		ISimpleInterface soap = srv.getHelloWorldPort();
+		System.out.println("server --> " + soap.saySomething());
 	}
-	/*
-	HelloWorldService srv = new HelloWorldService();
-	HelloWorld soap = srv.getHelloWorldPort();
-	System.out.println("server --> " + soap.saySomething());
-	*/
+	
+	
 }
