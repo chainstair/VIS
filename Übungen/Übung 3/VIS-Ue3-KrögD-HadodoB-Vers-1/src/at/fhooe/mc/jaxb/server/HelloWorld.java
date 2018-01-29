@@ -16,6 +16,6 @@ public class HelloWorld implements ISimpleInterface{
 	@Override
 	@WebMethod
 	public DummyData getData(String _name) {
-		return new DummyData("Dies ist ein Test", System.currentTimeMillis());
+		return new DummyData(_name, System.currentTimeMillis());
 	}
 }

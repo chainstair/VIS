@@ -22,6 +22,7 @@ public class Client {
 		HelloWorldService srv = new HelloWorldService();
 		ISimpleInterface soap = srv.getHelloWorldPort();
 		System.out.println("server --> " + soap.saySomething());
+		System.out.println(soap.getData("Zeit: "));
 	}
 	
 	
