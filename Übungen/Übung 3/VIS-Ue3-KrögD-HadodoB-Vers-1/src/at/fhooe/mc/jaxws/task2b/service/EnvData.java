@@ -15,14 +15,18 @@ public class EnvData{
 	@XmlElement
 	int mValue;
 	
+	@XmlElement
+	String mLocation;
+	
 	public EnvData(){}
-	public EnvData(int _value, long _time) {
-		mValue= _value;
-		mTimestamp= _time;
+	public EnvData(int _value, long _time, String _location) {
+		mValue = _value;
+		mTimestamp = _time;
+		mLocation = _location;
 	}
 	
 	public String toString() {
-		return mTimestamp +" | " + mValue;
+		return mLocation + " | " + mTimestamp +" | " + mValue;
 	}
 }
 
