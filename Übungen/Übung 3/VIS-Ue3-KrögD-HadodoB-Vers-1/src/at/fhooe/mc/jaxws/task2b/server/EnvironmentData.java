@@ -59,8 +59,8 @@ public class EnvironmentData implements IEnvService{
 			
 			//without root
 			unmarshaller.setProperty(UnmarshallerProperties.JSON_INCLUDE_ROOT, Boolean.FALSE);
-			StreamSource stream = new StreamSource(new StringReader(content));
-			JAXBElement<EnvData> envContainer = unmarshaller.unmarshal(stream, EnvData.class);
+			StreamSource json = new StreamSource(new StringReader(content));
+			JAXBElement<EnvData> envContainer = unmarshaller.unmarshal(json, EnvData.class);
 			resultData = envContainer.getValue();
 			System.out.println(resultData);
 		} catch (JAXBException e) {

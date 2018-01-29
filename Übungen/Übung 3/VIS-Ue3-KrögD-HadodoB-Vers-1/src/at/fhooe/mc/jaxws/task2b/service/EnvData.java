@@ -8,26 +8,38 @@ import javax.xml.bind.annotation.*;
  *
  */
 @XmlRootElement
-public class EnvData{
+public class EnvData {
 	@XmlElement
 	long mTimestamp;
-	
+
 	@XmlElement
 	int mValue;
-	
+
 	@XmlElement
 	String mLocation;
-	
-	public EnvData(){}
+
+	public EnvData() {
+	}
+
 	public EnvData(int _value, long _time, String _location) {
 		mValue = _value;
 		mTimestamp = _time;
 		mLocation = _location;
 	}
-	
+
+	public long getTimestamp() {
+		return mTimestamp;
+	}
+
+	public int getValue() {
+		return mValue;
+	}
+
+	public String getType(){
+		return mLocation;
+	}
+
 	public String toString() {
-		return mLocation + " | " + mTimestamp +" | " + mValue;
+		return mLocation + " | " + mTimestamp + " | " + mValue;
 	}
 }
-
-
