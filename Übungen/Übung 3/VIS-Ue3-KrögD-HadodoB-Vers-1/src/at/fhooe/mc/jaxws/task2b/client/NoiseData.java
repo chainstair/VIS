@@ -3,10 +3,10 @@ package at.fhooe.mc.jaxws.task2b.client;
 import at.fhooe.mc.jaxws.task2b.service.EnvData;
 
 public class NoiseData extends EnvData {
-	private int mTime;
+	private String mTime;
 	private int mNoise;
 
-	public NoiseData(int _time,int _noise){
+	public NoiseData(String _time,int _noise){
 		mTime = _time;
 		mNoise = _noise;
 	}
@@ -16,7 +16,7 @@ public class NoiseData extends EnvData {
 	}
 
 	@Override
-	public long getTimestamp() {
+	public String getTimestamp() {
 		return mTime;
 	}
 

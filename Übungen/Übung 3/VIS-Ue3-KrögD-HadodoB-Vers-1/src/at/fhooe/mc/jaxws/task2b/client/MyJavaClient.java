@@ -50,16 +50,16 @@ public class MyJavaClient implements IEnvService{
         System.out.println(msg);
         if (_type.equals("noise")){
         	String[] splitMsg = msg.split("\\|");
-        	data = new NoiseData(Integer.parseInt(splitMsg[0]),Integer.parseInt(splitMsg[1]));
+        	data = new NoiseData(splitMsg[0],Integer.parseInt(splitMsg[1]));
         }
         else if (_type.equals("air")){
         	String[] splitMsg = msg.split("\\|");
         	String[] messageVal = splitMsg[1].split(";");
-        	data = new AirData(Integer.parseInt(splitMsg[0]),Integer.parseInt(messageVal[0]),Integer.parseInt(messageVal[1]));
+        	data = new AirData(splitMsg[0],Integer.parseInt(messageVal[0]),Integer.parseInt(messageVal[1]));
         }
         else if (_type.equals("light")){
         	String[] splitMsg = msg.split("\\|");
-        	data = new LightData(Integer.parseInt(splitMsg[0]),Integer.parseInt(splitMsg[1]));
+        	data = new LightData(splitMsg[0],Integer.parseInt(splitMsg[1]));
         }
         else {
         	System.out.println("Error");

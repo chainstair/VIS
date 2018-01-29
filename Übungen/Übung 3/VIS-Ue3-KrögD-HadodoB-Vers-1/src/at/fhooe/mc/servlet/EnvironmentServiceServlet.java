@@ -13,8 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import at.fhooe.mc.jaxws.task2b.client.MyJavaClient;
+import at.fhooe.mc.jaxws.task2b.client.SoapClient;
 import at.fhooe.mc.jaxws.task2b.service.EnvData;
-import at.fhooe.mc.jaxws.task2b.service.IEnvService; 
+import at.fhooe.mc.jaxws.task2b.service.IEnvService;
 
 
 @WebServlet("/environmentservice")
@@ -40,7 +41,7 @@ public class EnvironmentServiceServlet extends HttpServlet {
 		
 		try {
 			
-			MyJavaClient client = new MyJavaClient("10.29.16.75", 5015);
+			MyJavaClient client = new MyJavaClient("192.168.188.30", 4025);
 			//Client client = new Client("127.0.0.1", 5063);
 			
 			EnvData[] data = client.requestAll();
@@ -69,9 +70,9 @@ public class EnvironmentServiceServlet extends HttpServlet {
 			
 		
 		try{
-			String adr = "EnvService";
+			String adr = "IEnvServer";
 			
-			Registry reg = LocateRegistry.getRegistry();
+			Registry reg = LocateRegistry.getRegistry(5021);
 			IEnvService server = (IEnvService)reg.lookup(adr);
 			EnvData[] data = server.requestAll();
 			
@@ -97,20 +98,21 @@ public class EnvironmentServiceServlet extends HttpServlet {
 		}
 		
 		try{
-			
-			EnvData[] data = server.requestAll();
+			SoapClient soapClient = new SoapClient();
+		
+			EnvData[] data = soapClient.getmSOAP().requestAll();
 			
 			out.println("<H2>SOAP Server Environment Data<br></H2>");
 			out.println("<table border=\"1\">");
 			out.println("<tr>");
+			out.println("<th>Location</th>");
 			out.println("<th>Timestamp</th>");
-			out.println("<th>Sensor</th>");
 			out.println("<th>Value</th>");		
 			out.println("</tr>");
 			for (EnvData e : data){
 				out.println("<tr>");
-				out.println("<td>" + e.getTimestamp() + "</td>");
 				out.println("<td>" + e.getType() + "</td>");
+				out.println("<td>" + e.getTimestamp() + "</td>");
 				out.println("<td>" + e.getValue() + "</td>");
 				out.println("</tr>");
 			}

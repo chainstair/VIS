@@ -4,10 +4,10 @@ import at.fhooe.mc.jaxws.task2b.service.EnvData;
 
 public class LightData extends EnvData {
 	
-	private int mTime;
+	private String mTime;
 	private int mLight;
 
-	public LightData(int _time,int _light){
+	public LightData(String _time,int _light){
 		mTime = _time;
 		mLight = _light;
 	}
@@ -17,7 +17,7 @@ public class LightData extends EnvData {
 	}
 
 	@Override
-	public long getTimestamp() {
+	public String getTimestamp() {
 		return mTime;
 	}
 

@@ -23,7 +23,7 @@ import org.eclipse.persistence.oxm.MediaType;
 import at.fhooe.mc.jaxws.task2b.service.EnvData;
 import at.fhooe.mc.jaxws.task2b.service.IEnvService;
 
-@WebService(endpointInterface="at.fhooe.mc.jaxws.service.IEnvService")
+@WebService(endpointInterface="at.fhooe.mc.jaxws.task2b.service.IEnvService")
 public class EnvironmentData implements IEnvService{
 
 	@Override
@@ -42,7 +42,7 @@ public class EnvironmentData implements IEnvService{
 		
 		try {
 			//create Url
-			URL text = new URL("http://www.orf.at");
+			URL text = new URL(stringBuilder.toString());
 			HttpURLConnection http =
 			(HttpURLConnection)text.openConnection();
 			int length = http.getContentLength();
@@ -53,13 +53,20 @@ public class EnvironmentData implements IEnvService{
 			String content = s.next();
 			s.close();
 			
+			int start = content.indexOf("condition");
+			int end = content.indexOf("}", start);
+			
+			String jsonResponse = content.substring(start+11, end+1);
+			
+			System.out.println(jsonResponse);
+			
 			JAXBContext jaxb = JAXBContext.newInstance(new Class[] { EnvData.class, ObjectFactory.class });
 			Unmarshaller unmarshaller = jaxb.createUnmarshaller();
 			unmarshaller.setProperty(UnmarshallerProperties.MEDIA_TYPE, MediaType.APPLICATION_JSON);
 			
 			//without root
 			unmarshaller.setProperty(UnmarshallerProperties.JSON_INCLUDE_ROOT, Boolean.FALSE);
-			StreamSource json = new StreamSource(new StringReader(content));
+			StreamSource json = new StreamSource(new StringReader(jsonResponse));
 			JAXBElement<EnvData> envContainer = unmarshaller.unmarshal(json, EnvData.class);
 			resultData = envContainer.getValue();
 			System.out.println(resultData);
@@ -82,8 +89,9 @@ public class EnvironmentData implements IEnvService{
 	public EnvData[] requestAll() throws RemoteException {
 		String[] locations = requestEnvironmentDataTypes();
 		EnvData[] dataArray = new EnvData[locations.length];
-		for (int i = 0; i <= locations.length; i++){
+		for (int i = 0; i < locations.length; i++){
 			dataArray[i] = requestEnvironmentData(locations[i]);
+			dataArray[i].setmLocation(locations[i]);
 		}
 		return dataArray;
 	}

@@ -6,9 +6,9 @@ public class AirData extends EnvData {
 
 	private int mAir;
 	private int mPollution;
-	private int mTime;
+	private String mTime;
 	
-	public AirData(int _time, int _air, int _pollution){
+	public AirData(String _time, int _air, int _pollution){
 		mAir = _air;
 		mPollution = _pollution;
 		mTime = _time;
@@ -19,7 +19,7 @@ public class AirData extends EnvData {
 	}
 
 	@Override
-	public long getTimestamp() {
+	public String getTimestamp() {
 		return mTime;
 	}
 
