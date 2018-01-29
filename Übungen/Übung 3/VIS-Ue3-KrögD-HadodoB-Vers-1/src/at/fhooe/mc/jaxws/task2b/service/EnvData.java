@@ -1,4 +1,4 @@
-package at.fhooe.mc.jaxws.service;
+package at.fhooe.mc.jaxws.task2b.service;
 
 import javax.xml.bind.annotation.*;
 

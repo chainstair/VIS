@@ -1,12 +1,12 @@
-package at.fhooe.mc.jaxws.server;
+package at.fhooe.mc.jaxws.task2b.server;
 
 
 import java.rmi.RemoteException;
 
 import javax.jws.*;
 
-import at.fhooe.mc.jaxws.service.EnvData;
-import at.fhooe.mc.jaxws.service.IEnvService;
+import at.fhooe.mc.jaxws.task2b.service.EnvData;
+import at.fhooe.mc.jaxws.task2b.service.IEnvService;
 
 @WebService(endpointInterface="at.fhooe.mc.jaxws.service.IEnvService")
 public class EnvironmentData implements IEnvService{

@@ -1,4 +1,4 @@
-package task01;
+package at.fhooe.mc.task01;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 

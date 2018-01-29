@@ -1,4 +1,4 @@
-package task01;
+package at.fhooe.mc.task01;
 
 import java.io.StringReader;
 import java.io.StringWriter;

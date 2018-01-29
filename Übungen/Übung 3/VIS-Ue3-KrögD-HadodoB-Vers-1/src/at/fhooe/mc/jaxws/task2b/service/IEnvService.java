@@ -1,7 +1,8 @@
-package at.fhooe.mc.jaxws.service;
+package at.fhooe.mc.jaxws.task2b.service;
 
 import java.rmi.*;
 
+import javax.jws.WebMethod;
 import javax.jws.WebService;
 
 /**
@@ -20,6 +21,7 @@ public interface IEnvService extends Remote{
 	* @see java.lang.String
 	* @see java.rmi.RemoteException
 	*/
+	@WebMethod
 	public String[] requestEnvironmentDataTypes() throws RemoteException;
 	
 	/**
@@ -30,10 +32,11 @@ public interface IEnvService extends Remote{
 	* @return EnvData Die aktuellen Messwerte des entsprechenden Sensors
 	* null, falls der Sensor nicht existiert
 	* @throws RemoteException Ein Fehler trat bei der Kommunikation auf
-	* @see at.fhooe.mc.vis.EnvData
+	* @see at.fhooe.mc.jaxws.task2b.service.vis.EnvData
 	* @see java.lang.String
 	* @see java.rmi.RemoteException
 	*/
+	@WebMethod
 	public EnvData requestEnvironmentData(String _type) throws RemoteException;
 	
 	/**
@@ -41,9 +44,10 @@ public interface IEnvService extends Remote{
 	*
 	* @return EnvData[] alle verf�gbaren Messwerte
 	* @throws RemoteException Ein Fehler trat bei der Kommunikation auf
-	* @see at.fhooe.mc.vis.EnvData
+	* @see at.fhooe.mc.jaxws.task2b.service.vis.EnvData
 	* @see java.lang.String
 	* @see java.rmi.RemoteException
 	*/
+	@WebMethod
 	public EnvData[] requestAll() throws RemoteException;
 }
