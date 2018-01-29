@@ -1,4 +1,4 @@
-package ue01;
+package task01;
 
 import java.io.StringReader;
 import java.io.StringWriter;

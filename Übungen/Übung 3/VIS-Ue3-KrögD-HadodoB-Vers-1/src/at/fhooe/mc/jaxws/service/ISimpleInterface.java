@@ -2,7 +2,7 @@ package at.fhooe.mc.jaxws.service;
 
 import javax.jws.*;
 
-import at.fhooe.mc.jaxb.server.DummyData;
+import at.fhooe.mc.jaxws.server.DummyData;
 
 @WebService
 public interface ISimpleInterface {

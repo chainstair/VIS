@@ -1,4 +1,4 @@
-package ue01;
+package task01;
 
 import javax.xml.bind.annotation.XmlType;
 
