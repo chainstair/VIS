@@ -41,7 +41,7 @@ public class EnvironmentServiceServlet extends HttpServlet {
 		
 		try {
 			
-			MyJavaClient client = new MyJavaClient("192.168.188.30", 4025);
+			MyJavaClient client = new MyJavaClient("192.168.188.30", 4030);
 			//Client client = new Client("127.0.0.1", 5063);
 			
 			EnvData[] data = client.requestAll();
@@ -72,7 +72,7 @@ public class EnvironmentServiceServlet extends HttpServlet {
 		try{
 			String adr = "IEnvServer";
 			
-			Registry reg = LocateRegistry.getRegistry(5021);
+			Registry reg = LocateRegistry.getRegistry(Registry.REGISTRY_PORT);
 			IEnvService server = (IEnvService)reg.lookup(adr);
 			EnvData[] data = server.requestAll();
 			

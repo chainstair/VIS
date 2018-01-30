@@ -69,6 +69,7 @@ public class EnvironmentData implements IEnvService{
 			StreamSource json = new StreamSource(new StringReader(jsonResponse));
 			JAXBElement<EnvData> envContainer = unmarshaller.unmarshal(json, EnvData.class);
 			resultData = envContainer.getValue();
+			resultData.setmLocation(_type);
 			System.out.println(resultData);
 		} catch (JAXBException e) {
 			System.out.println("JAXB Error");
@@ -90,8 +91,10 @@ public class EnvironmentData implements IEnvService{
 		String[] locations = requestEnvironmentDataTypes();
 		EnvData[] dataArray = new EnvData[locations.length];
 		for (int i = 0; i < locations.length; i++){
-			dataArray[i].setmLocation(locations[i]);
 			dataArray[i] = requestEnvironmentData(locations[i]);
+		}
+		for (EnvData e : dataArray){
+			System.out.println(e);
 		}
 		return dataArray;
 	}

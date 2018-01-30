@@ -48,10 +48,10 @@ public class ServiceMgmt {
 					lineInput = null;
 					server = new Server();
 					if (firstStart) {
-						reg = LocateRegistry.createRegistry(5021);
+						reg = LocateRegistry.createRegistry(Registry.REGISTRY_PORT);
 						firstStart = false;
 					} else {
-						reg = LocateRegistry.getRegistry(5021);
+						reg = LocateRegistry.getRegistry();
 					}
 					reg.rebind("IEnvServer", server);
 					System.out.println("RMI - Server started!");

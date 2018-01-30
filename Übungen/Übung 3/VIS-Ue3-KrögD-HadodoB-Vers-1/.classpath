@@ -8,5 +8,6 @@
 	<classpathentry kind="lib" path="C:/Users/gezgi/Desktop/VIS/Übungen/Übung 3/VIS-Ue3-KrögD-HadodoB-Vers-1/org.eclipse.persistence.core-2.7.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/gezgi/Desktop/VIS/Übungen/Übung 3/VIS-Ue3-KrögD-HadodoB-Vers-1/org.eclipse.persistence.moxy-2.7.1.jar"/>
 	<classpathentry kind="lib" path="C:/xampp/tomcat/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="C:/Users/gezgi/Desktop/VIS/Übungen/Übung 3/VIS-Ue3-KrögD-HadodoB-Vers-1/javax.ws.rs-api-2.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

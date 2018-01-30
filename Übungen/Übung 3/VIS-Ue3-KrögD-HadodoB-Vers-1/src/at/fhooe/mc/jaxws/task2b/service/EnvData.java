@@ -44,4 +44,8 @@ public class EnvData {
 	public void setmLocation(String mLocation) {
 		this.mLocation = mLocation;
 	}
+
+	public String getmLocation() {
+		return mLocation;
+	}
 }
