@@ -90,8 +90,8 @@ public class EnvironmentData implements IEnvService{
 		String[] locations = requestEnvironmentDataTypes();
 		EnvData[] dataArray = new EnvData[locations.length];
 		for (int i = 0; i < locations.length; i++){
-			dataArray[i] = requestEnvironmentData(locations[i]);
 			dataArray[i].setmLocation(locations[i]);
+			dataArray[i] = requestEnvironmentData(locations[i]);
 		}
 		return dataArray;
 	}
