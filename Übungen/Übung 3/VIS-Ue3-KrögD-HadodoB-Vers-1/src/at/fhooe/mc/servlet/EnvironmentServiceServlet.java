@@ -41,7 +41,7 @@ public class EnvironmentServiceServlet extends HttpServlet {
 		
 		try {
 			
-			MyJavaClient client = new MyJavaClient("192.168.188.30", 4030);
+			MyJavaClient client = new MyJavaClient("10.29.17.127", 4051);
 			//Client client = new Client("127.0.0.1", 5063);
 			
 			EnvData[] data = client.requestAll();

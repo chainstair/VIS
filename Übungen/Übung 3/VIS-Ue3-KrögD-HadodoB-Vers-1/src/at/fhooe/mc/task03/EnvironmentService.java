@@ -37,7 +37,7 @@ public class EnvironmentService extends Application {
     @GET
     @Produces(MediaType.TEXT_HTML)
     public String getOverview() {
-        return "<head></head><body><h1>Overview</h1><h2>"+ mEnvDataArrayList.size()+" Elements are saved inside the array.</h2</body>";
+        return "<head></head><body><h2>Uebersichts-HTML</h2><p> Number of elements:" + mEnvDataArrayList.size() + "</p></body>";
     }
 
     @GET
