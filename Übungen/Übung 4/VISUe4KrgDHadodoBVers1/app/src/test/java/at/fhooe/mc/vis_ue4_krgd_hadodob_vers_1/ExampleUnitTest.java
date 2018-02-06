@@ -1,4 +1,4 @@
-package at.fhooe.mc.android.btleproject;
+package at.fhooe.mc.vis_ue4_krgd_hadodob_vers_1;
 
 import org.junit.Test;
 

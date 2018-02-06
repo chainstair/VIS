@@ -1,37 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="at.fhooe.mc.vis_ue4_krgd_hadodob_vers_1.MainActivity">
 
     <ListView
-        android:id="@android:id/list"
+        android:id="@+id/list_view_bt"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="100dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-    </ListView>
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
 
     <TextView
-        android:id="@+id/activity_main_sensorTV"
-        android:layout_width="wrap_content"
+        android:id="@+id/text_view_selected"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@android:id/list" />
-
-</android.support.constraint.ConstraintLayout>
+        android:textSize="36sp"
+        android:textAlignment="center"
+        android:textStyle="normal|bold"
+        android:paddingTop="10sp"
+        android:paddingBottom="10sp"
+        android:text="Not connected"/>
+</LinearLayout>

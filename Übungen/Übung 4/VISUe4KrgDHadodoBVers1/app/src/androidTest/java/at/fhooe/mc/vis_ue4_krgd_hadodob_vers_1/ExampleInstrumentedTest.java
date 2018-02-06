@@ -1,4 +1,4 @@
-package at.fhooe.mc.android.btleproject;
+package at.fhooe.mc.vis_ue4_krgd_hadodob_vers_1;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("at.fhooe.mc.android.btleproject", appContext.getPackageName());
+        assertEquals("at.fhooe.mc.vis_ue4_krgd_hadodob_vers_1", appContext.getPackageName());
     }
 }
